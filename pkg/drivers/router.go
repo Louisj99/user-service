@@ -11,14 +11,14 @@ const (
 )
 
 // SetupRouter configure the gine router and returns a pointer to a gin engine which can be run.
-func SetupRouter(placeholder usecases.PlaceholderInterface) *gin.Engine {
+func SetupRouter(placeholder usecases.PlaceholderInterface, placeholderPostgres usecases.PlaceholderInterfacePostgres) *gin.Engine {
 
 	r := NewDefaultRouter(serviceName)
 
 	// Configure routes
 	v1 := r.Group("//v1")
 	{
-		v1.GET("/placeholder", usecases.Placeholder(placeholder, "placeholder"))
+		v1.GET("/placeholder", usecases.Placeholder(placeholder, placeholderPostgres, "placeholder"))
 
 	}
 

@@ -15,10 +15,15 @@ type PlaceholderResponse struct {
 type PlaceholderInterface interface {
 	Placeholder(ctx context.Context, placeholder string) error
 }
+type PlaceholderInterfacePostgres interface {
+	Placeholder(ctx context.Context, placeholder string) error
+}
 
-func Placeholder(PlaceholderInterface PlaceholderInterface, placeholder string) gin.HandlerFunc {
+func Placeholder(PlaceholderInterface PlaceholderInterface, placeholderPostgres PlaceholderInterfacePostgres, placeholder string) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		err := PlaceholderInterface.Placeholder(c, placeholder)
+
+		err := placeholderPostgres.Placeholder(c, placeholder)
+		err = PlaceholderInterface.Placeholder(c, placeholder)
 		if err != nil {
 			c.JSON(500, gin.H{"error": err.Error()})
 			return

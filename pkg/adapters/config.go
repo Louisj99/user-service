@@ -5,12 +5,12 @@ import (
 	"log"
 )
 
-type config struct {
+type Config struct {
 	PathToServiceAccountKey string `yaml:"pathToServiceAccountKey"`
 }
 
-func NewConfig() (*config, error) {
-	var config config
+func NewConfig() (*Config, error) {
+	var config Config
 	err := cleanenv.ReadConfig("config.yaml", &config)
 	if err != nil {
 		log.Fatalf("error reading config: %v", err)
