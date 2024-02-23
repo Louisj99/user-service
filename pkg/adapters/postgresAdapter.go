@@ -27,3 +27,7 @@ func (p *PostgresAdapter) Placeholder(ctx context.Context, placeholder string) e
 	//TODO implement me
 	panic("implement me")
 }
+func (p *PostgresAdapter) CreateUser(ctx context.Context, id string, email string, name string, admin bool) error {
+	//TODO implement me
+	panic("implement me")
+}

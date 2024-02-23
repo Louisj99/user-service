@@ -7,6 +7,11 @@ import (
 
 type Config struct {
 	PathToServiceAccountKey string `yaml:"pathToServiceAccountKey"`
+	Host                    string `yaml:"host"`
+	Port                    string `yaml:"port"`
+	User                    string `yaml:"user"`
+	Password                string `yaml:"password"`
+	Dbname                  string `yaml:"dbname"`
 }
 
 func NewConfig() (*Config, error) {

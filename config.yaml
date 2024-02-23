@@ -1,2 +1,7 @@
 pathToServiceAccountKey: ./firebaseCreds.json
+HOST: 82.6.165.104
+PORT: 5432
+USER: casaos
+PASSWORD: casaos
+DBNAME: casaos
 

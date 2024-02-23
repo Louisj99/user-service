@@ -6,6 +6,7 @@ import (
 	"firebase.google.com/go/auth"
 	"google.golang.org/api/option"
 	"log"
+	"user-service/pkg/entities"
 )
 
 type FirebaseAdapter struct {
@@ -35,13 +36,18 @@ func NewFirebaseAdapter(ctx context.Context, serviceAccountKeyFilePath string) (
 	}, nil
 }
 
-func (fa *FirebaseAdapter) CreateUser(email, password string) (*auth.UserRecord, error) {
-	params := (&auth.UserToCreate{}).Email(email).Password(password)
-	return fa.Auth.CreateUser(fa.Ctx, params)
-}
+func (fa *FirebaseAdapter) GetUser(email string) (entities.User, error) {
+	userRecord, err := fa.Auth.GetUserByEmail(fa.Ctx, email)
+	if err != nil {
+		return entities.User{}, err
+	}
 
-func (fa *FirebaseAdapter) VerifyIDToken(idToken string) (*auth.Token, error) {
-	return fa.Auth.VerifyIDToken(fa.Ctx, idToken)
+	user := entities.User{
+		ID:    userRecord.UID,
+		Email: userRecord.Email,
+	}
+
+	return user, nil
 }
 
 // Placeholder method to satisfy the PlaceholderInterface
