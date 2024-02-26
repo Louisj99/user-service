@@ -5,5 +5,5 @@ type User struct {
 	Email    string
 	Name     string
 	Admin    bool
-	disabled bool
+	Disabled bool
 }

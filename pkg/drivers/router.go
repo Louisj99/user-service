@@ -18,7 +18,7 @@ func SetupRouter(createUser usecases.CreateUserInterface, userGetter usecases.Us
 	// Configure routes
 	v1 := r.Group("//v1")
 	{
-		v1.POST("/placeholder/:id", usecases.CreateUser(createUser, userGetter))
+		v1.POST("/create-user/", usecases.CreateUser(createUser, userGetter))
 	}
 
 	return r

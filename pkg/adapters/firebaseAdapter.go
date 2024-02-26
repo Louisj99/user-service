@@ -35,7 +35,6 @@ func NewFirebaseAdapter(ctx context.Context, serviceAccountKeyFilePath string) (
 		Ctx:  ctx,
 	}, nil
 }
-
 func (fa *FirebaseAdapter) GetUser(email string) (entities.User, error) {
 	userRecord, err := fa.Auth.GetUserByEmail(fa.Ctx, email)
 	if err != nil {
