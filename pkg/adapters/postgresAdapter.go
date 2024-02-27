@@ -76,9 +76,9 @@ func (p *PostgresAdapter) AssignAdmin(ctx context.Context, id string) error {
 	}
 	return nil
 }
-func (p *PostgresAdapter) UpdateUser(ctx context.Context, id string, email string, name string, admin bool) error {
-	query := `UPDATE users SET user_email = $2, user_name = $3, admin = $4 WHERE user_id = $1`
-	_, err := p.DB.ExecContext(ctx, query, id, email, name, admin)
+func (p *PostgresAdapter) UpdateUser(ctx context.Context, id string, email string, name string, admin bool, disabled bool) error {
+	query := `UPDATE users SET user_email = $2, user_name = $3, admin = $4, disabled = $5 WHERE user_id = $1`
+	_, err := p.DB.ExecContext(ctx, query, id, email, name, admin, disabled)
 	if err != nil {
 		return err
 	}
