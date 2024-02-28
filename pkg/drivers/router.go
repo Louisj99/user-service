@@ -11,7 +11,7 @@ const (
 )
 
 // SetupRouter configure the gine router and returns a pointer to a gin engine which can be run.
-func SetupRouter(createUser usecases.CreateUserInterface, userGetter usecases.UserGetter) *gin.Engine {
+func SetupRouter(createUser usecases.CreateUserInterface, userGetter usecases.UserGetter, userUpdater usecases.UpdateUserInterface, userGetterFromDB usecases.UserGetterDB, usersGetter usecases.UsersGetter) *gin.Engine {
 
 	r := NewDefaultRouter(serviceName)
 
@@ -19,6 +19,9 @@ func SetupRouter(createUser usecases.CreateUserInterface, userGetter usecases.Us
 	v1 := r.Group("//v1")
 	{
 		v1.POST("/create-user/", usecases.CreateUser(createUser, userGetter))
+		v1.POST("/update-user/", usecases.UpdateUser(userUpdater))
+		v1.GET("/get-user/", usecases.GetUser(userGetterFromDB))
+		v1.GET("/get-users/", usecases.GetUsers(usersGetter))
 	}
 
 	return r
