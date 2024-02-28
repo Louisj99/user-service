@@ -37,7 +37,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	r := drivers.SetupRouter(postgresAdapter, firebaseAdapter, postgresAdapter)
+	r := drivers.SetupRouter(postgresAdapter, firebaseAdapter, postgresAdapter, postgresAdapter, postgresAdapter)
 
 	err = r.Run(":8080")
 	if err != nil {

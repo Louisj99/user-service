@@ -13,10 +13,6 @@ type updateUserRequest struct {
 	Disabled bool   `json:"disabled" binding:"required"`
 }
 
-type updateUserResponse struct {
-	Message string `json:"message"`
-}
-
 type UpdateUserInterface interface {
 	UpdateUser(ctx context.Context, id string, email string, name string, admin bool, disabled bool) error
 }

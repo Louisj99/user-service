@@ -39,7 +39,7 @@ func (p *PostgresAdapter) CreateUser(ctx context.Context, id string, email strin
 	return nil
 }
 
-func (p *PostgresAdapter) GetUser(id string) (entities.User, error) {
+func (p *PostgresAdapter) GetUserFromDB(id string) (entities.User, error) {
 	user := entities.User{}
 	query := `SELECT * FROM users WHERE user_id = $1`
 	row := p.DB.QueryRow(query, id)
